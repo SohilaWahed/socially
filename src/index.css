@@ -1,1 +1,37 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    --color-background: #ffffff;
+    --color-foreground: #0f172a;
+    /* Slate 900 */
+    --color-surface: #f8fafc;
+    /* Slate 50 */
+    --color-border: #e2e8f0;
+    /* Slate 200 */
+    --color-primary: #3b82f6;
+    /* Blue 500 */
+    --color-primary-hover: #2563eb;
+}
+
+@theme {
+    --color-background: var(--color-background);
+    --color-foreground: var(--color-foreground);
+    --color-border: var(--color-border);
+    --color-primary: var(--color-primary);
+    --color-primary-hover: var(--color-primary-hover);
+}
+
+.dark {
+    --color-background: #0f172a;
+    /* Slate 900 */
+    --color-foreground: #f8fafc;
+    /* Slate 50 */
+    --color-surface: #1e293b;
+    /* Slate 800 */
+    --color-border: #334155;
+    /* Slate 700 */
+    --color-primary: #60a5fa;
+    /* Blue 400 */
+    --color-primary-hover: #3b82f6;
+}
