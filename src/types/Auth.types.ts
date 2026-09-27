@@ -2,7 +2,7 @@ import type { loginSchema, registerSchema } from "@/schemas/login.schema"
 import { z } from "zod"
 
 
-export interface AuthSuccessResponse {
+export interface AuthResponse {
   success: true
   message: string
   data: AuthData
@@ -23,16 +23,6 @@ export interface User {
   photo: string
   cover: string
 }
-
-export interface AuthErrorResponse {
-  success: false
-  message: string
-  errors: string
-}
-
-export type LoginResponse = AuthSuccessResponse| AuthErrorResponse
-
-export type RegisterResponse = AuthSuccessResponse| AuthErrorResponse
 
 export type RegisterSchemaType = z.infer< typeof registerSchema>
 

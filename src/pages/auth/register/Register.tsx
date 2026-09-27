@@ -12,7 +12,7 @@ import { registerApi } from "@/apis/auth.apis"
 import { useMutation } from '@tanstack/react-query';
 import { useState } from "react"
 import { toast } from "sonner"
-import axios from "axios"
+import { getErrorMessage } from "@/utils/getErrorMessage"
 
 export default function Register() {
 
@@ -39,22 +39,13 @@ export default function Register() {
     isPending,
   } = useMutation({
     mutationFn: registerApi,
-    onSuccess: (data) => {
-      if (data.success) {
+    onSuccess: () => {    
         toast.success("Account created successfully")
         navigate(ROUTES.LOGIN)
-      } else {
-        setApiError(data.message)
-      }
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        setApiError(error.response?.data?.message)
-        console.log("STATUS:", error.response?.status)
-        console.log("DATA:", error.response?.data)
-        return
-      }
-      console.log("REGISTER ERROR:", error)
+      const msg = getErrorMessage(error)
+      setApiError(msg)
     },
   })
 
@@ -97,7 +88,7 @@ export default function Register() {
           />
 
           {apiError && (
-            <p className= "text-red-500 pb-2 capitalize">
+            <p className="text-red-500 pb-2 capitalize">
               {apiError}
             </p>
           )}

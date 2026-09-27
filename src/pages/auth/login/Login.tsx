@@ -15,6 +15,7 @@ import { loginApi } from "@/apis/auth.apis"
 import { setToken } from "@/utils/tokens"
 import { useState } from "react"
 import { toast } from "sonner"
+import { getErrorMessage } from "@/utils/getErrorMessage"
 
 export default function Login() {
 
@@ -33,13 +34,13 @@ export default function Login() {
   const { isPending, mutate } = useMutation({
     mutationFn: loginApi,
     onSuccess: (data) => {
-      if (data.success) {
-        toast.success("Login successfully")
-        navigate(ROUTES.FEED)
-        setToken(data.data.token)
-      } else {
-        setApiError(data.message)
-      }
+      toast.success("Login successfully")
+      navigate(ROUTES.FEED)
+      setToken(data.data.token)
+    },
+    onError: (error) => {
+      const msg = getErrorMessage(error)
+      setApiError(msg)
     }
   })
 
