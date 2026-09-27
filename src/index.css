@@ -2,36 +2,69 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-    --color-background: #ffffff;
-    --color-foreground: #0f172a;
-    /* Slate 900 */
-    --color-surface: #f8fafc;
+    /* Main background */
+    --color-background: #F7F7FB;
+    /* Cards / surfaces */
+    --color-surface: #FFFFFF;
+    /* Main text */
+    --color-foreground: #111827;
+    /* Secondary text */
+    --color-muted: #64748B;
     /* Slate 50 */
-    --color-border: #e2e8f0;
-    /* Slate 200 */
-    --color-primary: #3b82f6;
-    /* Blue 500 */
-    --color-primary-hover: #2563eb;
-}
+    --color-border: #E2E8F0;
+    /* Main actions */
+    --color-primary: #7C3AED;
+    /* Secondary accent */
+    --color-secondary: #0891B2;
+    /* Highlights */
+    --color-accent: #DB2777;
+     /* Glass cards */
+    --color-glass: rgba(255, 255, 255, .65);
+    /* Glass border */
+   --color-glass-border: rgba(15, 23, 42, .08);
+    /* Glass subtle */
+   --color-glass-subtle: rgba(255, 255, 255, .45);
+    /* Glass active */
+   --color-glass-active: rgba(255, 255, 255, .8);
+   
 
-@theme {
-    --color-background: var(--color-background);
-    --color-foreground: var(--color-foreground);
-    --color-border: var(--color-border);
-    --color-primary: var(--color-primary);
-    --color-primary-hover: var(--color-primary-hover);
 }
 
 .dark {
-    --color-background: #0f172a;
-    /* Slate 900 */
-    --color-foreground: #f8fafc;
-    /* Slate 50 */
-    --color-surface: #1e293b;
-    /* Slate 800 */
-    --color-border: #334155;
-    /* Slate 700 */
-    --color-primary: #60a5fa;
-    /* Blue 400 */
-    --color-primary-hover: #3b82f6;
+    --color-background: #080B14;
+    --color-surface: #111827;
+    --color-foreground: #F8FAFC;
+    --color-muted: #94A3B8;
+    --color-primary: #8B5CF6;
+    --color-secondary: #06B6D4;
+    --color-accent: #EC4899;
+    --color-border: rgba(255, 255, 255, .10);
+    --color-glass: rgba(255, 255, 255, .08);
+    --color-glass-border: rgba(255, 255, 255, .12);
+    --color-glass-subtle: rgba(255, 255, 255, .05);
+    --color-glass-active: rgba(255, 255, 255, .12);
+}
+
+@theme {
+    /* Colors */
+    --color-background: var(--color-background);
+    --color-foreground: var(--color-foreground);
+    --color-muted: var(--color-muted);
+    --color-border: var(--color-border);
+   
+    --color-primary: var(--color-primary);
+    --color-secondary: var(--color-secondary);
+    --color-accent: var(--color-accent);
+   
+    /* Glass */
+    --color-glass-subtle: var(--color-glass-subtle);
+    --color-glass: var(--color-glass);
+    --color-glass-active: var(--color-glass-active);
+    --color-glass-border: var(--color-glass-border);
+
+    /* Radius */
+    --radius-ui: 12px;
+    --radius-card: 16px;
+    --radius-featured: 24px;
+    --radius-pill: 9999px;
 }
