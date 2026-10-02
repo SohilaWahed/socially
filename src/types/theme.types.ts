@@ -3,5 +3,5 @@ export type Theme = 'dark' | 'light'
 
 export interface ThemeContextType {
     theme: Theme
-    toggleTheme: (theme: Theme) => void
+    toggleTheme: () => void
 }

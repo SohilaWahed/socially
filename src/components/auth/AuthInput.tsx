@@ -7,6 +7,7 @@ interface AuthInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string,
 }
 export default function AuthInput({ label, error, ...props }: AuthInputProps) {
+  
   return (
     <div className={cn("space-y-2",props.className)}>
       <label htmlFor={props.id} className="text-sm font-medium text-foreground">{label}</label>
@@ -17,7 +18,7 @@ export default function AuthInput({ label, error, ...props }: AuthInputProps) {
         focus:ring-3 
         focus:ring-primary/10` , error ? `border-red-500 focus:border-red-500 focus:ring-red-500/10` : "")} />
       {error && (
-        <p className="text-xs text-red-500">
+        <p role="alert" className="text-xs text-red-500">
           {error}
         </p>
       )}

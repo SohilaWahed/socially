@@ -13,9 +13,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useState } from "react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/utils/getErrorMessage"
+import { useTranslation } from "react-i18next"
 
 export default function Register() {
 
+ const { t } = useTranslation("auth");
 
   const navigate = useNavigate()
 
@@ -39,9 +41,9 @@ export default function Register() {
     isPending,
   } = useMutation({
     mutationFn: registerApi,
-    onSuccess: () => {    
-        toast.success("Account created successfully")
-        navigate(ROUTES.LOGIN)
+    onSuccess: () => {
+      toast.success(t('register.success'))
+      navigate(ROUTES.LOGIN)
     },
     onError: (error) => {
       const msg = getErrorMessage(error)
@@ -83,12 +85,12 @@ export default function Register() {
         <AuthCard>
 
           <AuthHeader
-            title="Create your account"
-            description="Join the community and start sharing"
+            title={t('register.title')}
+            description={t('register.description')}
           />
 
           {apiError && (
-            <p className="text-red-500 pb-2 capitalize">
+            <p role="alert" className="text-red-500 pb-2 capitalize">
               {apiError}
             </p>
           )}
@@ -104,27 +106,27 @@ export default function Register() {
           >
             <AuthInput
               id="fullName"
-              label="Full name"
+              label={t('register.fullName')}
               type="text"
-              placeholder="Sohila Waheed"
+              placeholder={t('register.fullNamePlaceholder')}
               {...register('name')}
               error={errors.name?.message}
             />
 
             <AuthInput
               id="userName"
-              label="Username"
+              label={t('register.username')}
               type="text"
-              placeholder="@Sola"
+              placeholder={t('register.usernamePlaceholder')}
               {...register('username')}
               error={errors.username?.message}
             />
 
             <AuthInput
               id="email"
-              label="Email"
+              label={t('register.email')}
               type="email"
-              placeholder="you@example.com"
+              placeholder={t('register.emailPlaceholder')}
               className="col-span-2"
               {...register('email')}
               error={errors.email?.message}
@@ -132,7 +134,7 @@ export default function Register() {
 
             <AuthInput
               id="password"
-              label="Password"
+              label={t('register.password')}
               type="password"
               placeholder="••••••••"
               {...register('password')}
@@ -141,7 +143,7 @@ export default function Register() {
 
             <AuthInput
               id="rePassword"
-              label="Confirm password"
+              label={t('register.confirmPassword')}
               type="password"
               placeholder="••••••••"
               {...register('rePassword')}
@@ -150,7 +152,7 @@ export default function Register() {
 
             <AuthInput
               id="dateOfBirth"
-              label="Date of birth"
+              label={t('register.dateOfBirth')}
               type="date"
               {...register('dateOfBirth')}
               error={errors.dateOfBirth?.message}
@@ -159,15 +161,17 @@ export default function Register() {
             {/* Gender */}
             <div className="space-y-2">
               <label
+                htmlFor="gender"
                 className="
                   text-sm
                   font-medium
                   text-foreground
                 ">
-                Gender
+                {t('register.gender')}
               </label>
 
               <select
+                id="gender"
                 className="
                   h-12
                   w-full
@@ -192,18 +196,21 @@ export default function Register() {
                 {...register('gender')}
               >
                 <option value="" className="text-black">
-                  Select gender
+                  {t('register.selectGender')}
                 </option>
 
                 <option value="male" className="text-black">
-                  Male
+                 {t('register.male')}
                 </option>
 
                 <option value="female" className="text-black">
-                  Female
+                  {t('register.female')}
                 </option>
               </select>
-              {errors.gender && <p className="text-xs text-red-500">{errors.gender.message}</p>}
+              {errors.gender &&
+               <p role="alert" className="text-xs text-red-500">
+                {errors.gender.message}
+                </p>}
             </div>
 
             {/* Terms */}
@@ -227,7 +234,7 @@ export default function Register() {
                     text-muted
                   "
                 >
-                  I agree to the{" "}
+                  {t('register.terms')}{" "}
 
                   <Link
                     to="#"
@@ -237,10 +244,10 @@ export default function Register() {
                       hover:text-secondary
                     "
                   >
-                    Terms of Service
+                    {t('register.termsOfService')}
                   </Link>
 
-                  {" "}and{" "}
+                  {" "}{t('register.and')}{" "}
 
                   <Link
                     to="#"
@@ -250,7 +257,7 @@ export default function Register() {
                       hover:text-secondary
                     "
                   >
-                    Privacy Policy
+                    {t('register.privacyPolicy')}
                   </Link>
                 </span>
               </label>
@@ -282,13 +289,12 @@ export default function Register() {
               "
               disabled={isPending}
             >
-              {isPending ? "Creating account..." : "Create account"}
+              {isPending ? t('register.submitting') : t('register.submit') }
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-muted">
-            Already have an account?{" "}
-
+            {t('register.hasAccount')}{" "}
             <Link
               to={ROUTES.LOGIN}
               className="
@@ -298,7 +304,7 @@ export default function Register() {
                 hover:text-secondary
               "
             >
-              Sign in
+              {t('register.signIn')}
             </Link>
           </p>
         </AuthCard>

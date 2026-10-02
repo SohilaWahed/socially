@@ -1,12 +1,13 @@
 import type { Story } from "@/types/feed.types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 interface StoryModalProps {
     stories: Story[]
     currentIndex: number
-    onClose: (selectedStory: null) => void
+    onClose: () => void
     onNext: () => void
     onPrevious: () => void
 }
@@ -14,6 +15,8 @@ interface StoryModalProps {
 const STORY_DURATION = 20_000
 
 export default function StoryModal({ stories, currentIndex, onClose, onNext, onPrevious }: StoryModalProps) {
+
+    const { t , i18n } = useTranslation('feed');
 
     const story = stories[currentIndex]
     const [progress, setProgress] = useState(0)
@@ -39,9 +42,8 @@ export default function StoryModal({ stories, currentIndex, onClose, onNext, onP
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            console.log(event.key)
             if (event.key === 'Escape') {
-                onClose(null)
+                onClose()
             }
             if (event.key === 'ArrowRight') {
                 onNext()
@@ -50,7 +52,6 @@ export default function StoryModal({ stories, currentIndex, onClose, onNext, onP
             if (event.key === 'ArrowLeft') {
                 onPrevious()
             }
-
         }
 
         window.addEventListener('keydown', handleKeyDown)
@@ -62,21 +63,25 @@ export default function StoryModal({ stories, currentIndex, onClose, onNext, onP
     }, [onClose, onNext, onPrevious])
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-md">
+        <div className="absolute inset-x-0 top-0 z-80 flex items-center justify-center
+         bg-surface px-4 pt-10 backdrop-blur-md"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="story-dialog-title">
 
             {/* Previous */}
             {currentIndex > 0 && (
                 <button
                     type="button"
                     onClick={onPrevious}
-                    className="absolute left-3 top-1/2 z-20
+                    className="absolute left-1 sm:left-3 top-1/2 z-20
                             -translate-y-1/2 rounded-full bg-black/30 p-2
                             text-white backdrop-blur-md
-                            transitionhover:bg-white/10
+                            transition hover:bg-white/10
                         "
-                    aria-label="Previous story"
+                    aria-label={t("stories.previousStory")}
                 >
-                    <ChevronLeft size={24} />
+                   {i18n.language === 'en' ? <ChevronLeft size={24} /> :  <ChevronRight size={24} />} 
                 </button>
             )}
 
@@ -84,17 +89,18 @@ export default function StoryModal({ stories, currentIndex, onClose, onNext, onP
             <button
                 type="button"
                 onClick={onNext}
-                className="absolute right-3 top-1/2 z-20 -translate-y-1/2
+                className="absolute right-1 sm:right-3 top-1/2 z-20 -translate-y-1/2
                         rounded-full bg-black/30 p-2 text-white
                         backdrop-blur-md transition hover:bg-white/10
                     "
-                aria-label="Next story"
+                aria-label={t("stories.nextStory")}
             >
-                <ChevronRight size={24} />
+                {i18n.language === 'en' ? <ChevronRight size={24} /> :  <ChevronLeft size={24} />} 
+
             </button>
 
             <div className="relative flex h-[80vh] max-h-150 w-full max-w-sm
-                flex-col overflow-hidden rounded-card bg-black shadow-2xl"
+                flex-col overflow-hidden rounded-card bg-background shadow-2xl"
                 onClick={(event) => event.stopPropagation()}>
 
 
@@ -120,10 +126,12 @@ export default function StoryModal({ stories, currentIndex, onClose, onNext, onP
                         <span className="text-sm font-semibold">{story.user.name}</span>
                     </div>
                     <button
-                        onClick={() => onClose(null)}
+                        type="button"
+                        onClick={() => onClose()}
+                        aria-label={t("stories.closeStory")}
                         className="flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-lg hover:bg-black/60"
                     >
-                        ✕
+                      <span aria-hidden="true"> ✕ </span>  
                     </button>
                 </div>
 

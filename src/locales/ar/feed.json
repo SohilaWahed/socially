@@ -1,0 +1,33 @@
+{
+  "common": {
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "next": "التالي",
+    "previous": "السابق",
+    "remove": "حذف"
+  },
+  "header": {
+    "greeting": "صباح الخير، {{name}}",
+    "subtitle": "إليك ما يحدث في عالمك."
+  },
+  "stories": {
+    "title": "القصص",
+    "viewAll": "عرض الكل",
+    "yourStory": "قصتك",
+    "createStory": "إنشاء قصة جديدة",
+    "openStory": "فتح قصة {{name}}",
+    "previousStory": "القصة السابقة",
+    "nextStory": "القصة التالية",
+    "closeStory": "إغلاق القصة"
+  },
+  "createStory": {
+    "title": "إنشاء قصة",
+    "description": "شارك لحظة مع متابعيك.",
+    "addPhoto": "إضافة صورة",
+    "chooseImage": "اضغط لاختيار صورة",
+    "caption": "الوصف",
+    "placeholder": "أضف شيئًا...",
+    "submit": "إنشاء قصة",
+    "removeImage": "حذف الصورة المختارة"
+  }
+}

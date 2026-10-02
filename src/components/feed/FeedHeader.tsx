@@ -1,14 +1,18 @@
+import { useTranslation } from "react-i18next";
 
 export default function FeedHeader({name}:{name:string}) {
+
+  const { t } = useTranslation('feed');
+
   return (
     <div className="mb-5">
       <h1 className="text-2xl font-bold tracking-tight text-foreground">
-        Good morning, {name}
-        <span className="ml-2">✨</span>
+         {t("header.greeting", { name })}
+        <span className="ml-2" aria-hidden="true">✨</span>
       </h1>
 
       <p className="mt-1 text-sm text-muted">
-        Here’s what’s happening in your world.
+       {t("header.subtitle")}
       </p>
     </div>
   )

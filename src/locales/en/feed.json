@@ -1,0 +1,33 @@
+{
+    "common": {
+        "cancel": "Cancel",
+        "close": "Close",
+        "next": "Next",
+        "previous": "Previous",
+        "remove": "Remove"
+    },
+    "header": {
+        "greeting": "Good morning, {{name}}",
+        "subtitle": "Here’s what’s happening in your world."
+    },
+    "stories": {
+        "title": "Stories",
+        "viewAll": "View all",
+        "yourStory": "Your story",
+        "createStory": "Create a new story",
+        "openStory": "Open {{name}}'s story",
+        "previousStory": "Previous story",
+        "nextStory": "Next story",
+        "closeStory": "Close story"
+    },
+    "createStory": {
+        "title": "Create Story",
+        "description": "Share a moment with your followers.",
+        "addPhoto": "Add a photo",
+        "chooseImage": "Click to choose an image",
+        "caption": "Caption",
+        "placeholder": "Add something...",
+        "submit": "Create Story",
+        "removeImage": "Remove selected image"
+    }
+}

@@ -1,14 +1,17 @@
 import { ImagePlus, X } from "lucide-react"
 import { useState, type ChangeEvent } from "react"
+import { useTranslation } from "react-i18next";
 
 interface CreateStoryModalProps {
     onClose: (isCreateModalOpen: boolean) => void
 }
+
 export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
+
+    const { t } = useTranslation('feed');
 
     const [image, setImage] = useState<string>("")
     const [text, setText] = useState<string>("")
-
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
@@ -23,8 +26,11 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
-            onClick={() => onClose(false)}>
+        <div className="absolute inset-x-0 top-0 z-50
+         flex items-center justify-center
+          bg-surface backdrop-blur-sm p-4"
+            onClick={() => onClose(false)}
+        >
             <div className="w-full max-w-lg rounded-card 
                 border border-glass-border bg-surface p-5 shadow-2xl"
                 onClick={(event) => event.stopPropagation()}
@@ -32,10 +38,10 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
                 {/* Header */}
                 <div className="mb-5">
                     <h2 className="text-lg font-semibold text-foreground">
-                        Create Story
+                         {t("createStory.title")}
                     </h2>
                     <p className="mt-1 text-sm text-muted">
-                        Share a moment with your followers.
+                       {t("createStory.description")}
                     </p>
                 </div>
 
@@ -81,11 +87,11 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
 
                                 <div>
                                     <p className="text-sm font-medium text-foreground">
-                                        Add a photo
+                                         {t("createStory.addPhoto")}
                                     </p>
 
                                     <p className="mt-1 text-xs text-muted">
-                                        Click to choose an image
+                                        {t("createStory.chooseImage")}
                                     </p>
                                 </div>
                             </div>
@@ -94,7 +100,7 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
                         <input
                             type="file"
                             accept="image/*"
-                            className="hidden"
+                            className="sr-only"
                             onChange={handleImageChange}
                         />
                     </label>
@@ -105,14 +111,14 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
                             htmlFor="story-text"
                             className="mb-2 block text-sm font-medium text-foreground"
                         >
-                            Caption
+                           {t("createStory.caption")}
                         </label>
 
                         <textarea
                             id="story-text"
                             value={text}
                             onChange={(event) => setText(event.target.value)}
-                            placeholder="Add something..."
+                            placeholder={t("createStory.placeholder")}
                             maxLength={150}
                             rows={3}
                             className=" w-full resize-none
@@ -145,7 +151,7 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
                                 hover:bg-glass
                             "
                         >
-                            Cancel
+                            {t("common.cancel")}
                         </button>
 
                         <button
@@ -164,7 +170,7 @@ export default function CreateStoryModal({ onClose }: CreateStoryModalProps) {
                             disabled:opacity-50
                         "
                         >
-                            Create Story
+                           {t("createStory.submit")}
                         </button>
                     </div>
 

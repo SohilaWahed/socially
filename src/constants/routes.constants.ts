@@ -6,5 +6,7 @@ const ROUTES = {
     PROFILE:'/profile',
     SETTINGS:'/settings',
     SAVED:'/saved',
+    SUGGESTED_PEOPLE:'/Suggested-People',
+    EXPLORE:'/explore'
 }
 export default ROUTES

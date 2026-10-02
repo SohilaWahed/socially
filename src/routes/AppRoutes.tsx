@@ -11,6 +11,8 @@ import Saved from "@/pages/main/saved/Saved"
 import Settings from "@/pages/main/settings/Settings"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import ProtectedRoute from "./ProtectedRoute"
+import SuggestedPeople from "@/pages/main/suggestedPeople/SuggestedPeople"
+import Explore from "@/pages/main/explore/Explore"
 export default function AppRoutes() {
 
   const routes = createBrowserRouter([
@@ -28,6 +30,8 @@ export default function AppRoutes() {
             { path: ROUTES.FEED, element: <Feed /> },
             { path: ROUTES.POST_DETAILS, element: <PostDetails /> },
             { path: ROUTES.SAVED, element: <Saved /> },
+            { path: ROUTES.SUGGESTED_PEOPLE, element: <SuggestedPeople /> },
+            { path: ROUTES.EXPLORE, element: <Explore /> },
             { path: ROUTES.SETTINGS, element: <Settings /> }
           ]
         }

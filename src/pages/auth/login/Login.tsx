@@ -16,8 +16,11 @@ import { setToken } from "@/utils/tokens"
 import { useState } from "react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/utils/getErrorMessage"
+import { useTranslation } from "react-i18next"
 
 export default function Login() {
+
+  const { t } = useTranslation("auth");
 
   const navigate = useNavigate()
 
@@ -34,7 +37,7 @@ export default function Login() {
   const { isPending, mutate } = useMutation({
     mutationFn: loginApi,
     onSuccess: (data) => {
-      toast.success("Login successfully")
+      toast.success(t("login.success"));
       navigate(ROUTES.FEED)
       setToken(data.data.token)
     },
@@ -75,8 +78,8 @@ export default function Login() {
         <AuthCard>
 
           <AuthHeader
-            title="Welcome back"
-            description="Sign in to continue to your account"
+            title={t("login.title")}
+            description={t("login.description")}
           />
 
           {apiError && (
@@ -89,18 +92,18 @@ export default function Login() {
 
             <AuthInput
               id="email"
-              label="Email"
+              label={t('login.email')}
               type="email"
-              placeholder="you@example.com"
+              placeholder={t("login.emailPlaceholder")}
               {...register('email')}
               error={errors.email?.message}
             />
 
             <AuthInput
               id="password"
-              label="Password"
+              label={t('login.password')}
               type="password"
-              placeholder="••••••••"
+              placeholder={t('login.passwordPlaceholder')}
               {...register('password')}
               error={errors.password?.message}
             />
@@ -126,7 +129,7 @@ export default function Login() {
                 />
 
                 <span className="text-muted">
-                  Remember me
+                  {t('login.rememberMe')}
                 </span>
               </label>
 
@@ -139,7 +142,7 @@ export default function Login() {
                   hover:text-secondary
                 "
               >
-                Forgot password?
+               {t('login.Forgot password?')}
               </Link>
             </div>
 
@@ -167,7 +170,9 @@ export default function Login() {
               "
               disabled={isPending}
             >
-              {isPending ? "Singing In..." : "Sign In"}
+              {isPending
+                ? t("login.submitting")
+                : t("login.submit")}
             </button>
           </form>
 
@@ -176,18 +181,18 @@ export default function Login() {
             <div className="h-px flex-1 bg-border" />
 
             <span className="text-xs text-muted">
-              OR
+              {t('login.divider')}
             </span>
 
             <div className="h-px flex-1 bg-border" />
           </div>
 
           <SocialButton icon={<Regex size={18} />}>
-            Continue with Google
+            {t('login.google')}
           </SocialButton>
 
           <p className="mt-6 text-center text-sm text-muted">
-            Don't have an account?{" "}
+            {t('login.noAccount')}{" "}
 
             <Link
               to={ROUTES.REGISTER}
@@ -198,7 +203,7 @@ export default function Login() {
                 hover:text-secondary
               "
             >
-              Create account
+              {t('login.createAccount')}
             </Link>
           </p>
         </AuthCard>

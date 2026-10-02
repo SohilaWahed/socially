@@ -5,6 +5,7 @@ import type { Theme } from "@/types/theme.types";
 interface ThemeContextProviderProps {
     children: ReactNode
 }
+
 export default function ThemeContextProvider({ children }: ThemeContextProviderProps) {
 
     const [theme, setTheme] = useState<Theme>(() => {
